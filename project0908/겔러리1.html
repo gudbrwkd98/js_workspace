@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrapper{
+            width: 500px;
+            height: 450px;
+    
+            margin: auto;
+        }
+
+        #gallery{
+            width: 100%;
+            height: 400px;
+        }
+        #image{
+            width: 100%;
+            height: 100%;
+            border:2px solid black;
+            box-sizing: border-box;
+        }
+        #btn{
+            overflow:hidden;
+            width: 100%;
+            height: 50px;
+        
+        }
+        #btnleft{
+        
+        }
+        #btnright{
+        float: right; /*자식이 떠있으면 원칙상 부모의 overflow:hidden ~ btn 부모 클래스*/
+   
+        }
+        /* selector 에서 한칸을 띄울경우  하위자식의 요소들 */
+        #btn button{
+            font-size: 25px;
+            padding:4px;
+        }
+
+       #images{
+           height: 100%;
+           width: 100%;
+       }
+    </style>
+    <script>
+        count = 1;
+        function back(){
+            if(count == 1){
+                count = 10;
+            }else {
+            count = count-1;
+            }
+            document.getElementById('images').src = "../image/travel/travel/"+count+".jpg";
+        }
+
+        function forward(){
+            if(count == 10){
+                count = 1;
+            }else{
+            count = count+1;
+            }
+
+            document.getElementById('images').src = "../image/travel/travel/"+count+".jpg";
+        }
+    </script>
+</head>
+<body>
+    
+    <div id="wrapper">
+        <div id="gallery">
+              <img src = "../image/travel/travel/1.jpg" id = "images"> 
+        </div>
+        <div id ="btn">
+            <button id="btnleft" onclick="back()">←</button>
+            <button id="btnright" onclick="forward()">→ </button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var n = 1;
+        function next(){
+            
+            n++;
+            document.getElementById("image").src = "../image/hero/hero/image"+ n + ".png";
+            
+        }
+    </script>
+</head>
+<body>
+    
+    <img src = "../image/hero/hero/image1.png" id = "image"/>
+
+    <button onclick="next()">다음 프레임 보기</button>
+</body>
+</html>

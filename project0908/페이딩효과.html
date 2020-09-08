@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<script>
+     var op = 1;
+    function transparent(){
+        op = op - 0.1;
+        document.getElementById("pic").style.opacity = op ;
+    }
+    function untransparent(){
+        op = op + 0.1;
+        document.getElementById("pic").style.opacity = op ;
+    }
+</script>
+</head>
+<body>
+    <img src="../image/travel/travel/10.jpg" id="pic"/>
+    <button onclick="transparent()">점점 투명하게</button>
+    <button onclick="untransparent()"> 점점 불투명하게 </button>
+</body>
+</html>
