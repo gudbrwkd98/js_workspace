@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+   
+        #wrapper{
+            width: 800px;
+            height: 600px;
+            border: 2px solid black;
+             margin: auto;
+       
+        }
+
+        #control{
+        width:200px;
+        height:100%;
+    
+        float:left;
+    }    
+    #result{
+        width:600px;
+        height:100%;
+
+        float:left;
+    }    
+    
+    #pic{
+        width: 100%;
+        height: 100%;
+        transform:scaleX(1);
+        transform: scaleY(1);
+        opacity: 1;
+        transform: rotate(0deg);
+        border: 2px dotted red;
+    }
+       
+
+    </style>
+    
+    <script>
+        // 문서내의 pic 이라는 요소의 css 의 너비를 늘린다
+         
+        var w = 0;
+        var h = 0;
+        var x = 1;
+        var y = 1;
+        var o = 1;
+        var r = 0;
+        var b = 0;
+
+
+        function btnW(){
+            w = w+10;
+            document.getElementById("pic").style.width = w +"px";
+           
+        }
+       
+        function btnH(){
+            h = h + 10;
+            document.getElementById("pic").style.height = h + "px";
+        }
+
+        function setScaleX(){
+            x = x + 0.5;
+            
+            document.getElementById("pic").style.transform = "scaleX(" + x + ")";
+        }
+        function setScaleY(){
+            y = y + 0.5;
+            
+            document.getElementById("pic").style.transform = "scaleY(" + y + ")";
+        }
+         
+        function btnOp(){
+        
+            o = o - 0.1;
+            document.getElementById("pic").style.opacity = o;
+            
+         
+    }
+        function btnRo(){
+            r = r + 10;
+            document.getElementById("pic").style.transform = "rotate("+r+"deg)";
+        }
+
+        function setBorder(){
+            b = b+1;
+            document.getElementById("pic").style.border =  b+"px dotted red";
+        }
+    </script>
+</head>
+<body>
+    
+    <div id = "wrapper">
+        <div id = "control" >
+
+            <ul>
+            <li>
+                <button onclick="btnW()">width</button> 
+                <button onclick="btnH()">height</button>
+            </li>
+            
+            <li>
+                <button onclick="setScaleX()">scaleX</button> 
+                <button onclick="setScaleY()">scaleY</button>
+            </li>
+            <li>
+                <button onclick="btnOp()">opacity</button>
+            </li>
+            <li>
+                <button onclick="btnRo()">rotate</button>
+            </li>
+
+            <li>
+                <button onclick="setBorder()">border</button>
+            </li> 
+            </ul> 
+        </div><div id = "result"><img src="https://w7.pngwing.com/pngs/760/625/png-transparent-elsword-elesis-kog-games-job-character-others-couple-fictional-character-elsword.png" id ="pic" /></div>
+    </div>
+
+
+</body>
+</html>

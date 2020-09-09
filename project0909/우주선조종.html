@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-image :url(https://s3.envato.com/files/235865275/game-bg-03.jpg);
+            background-repeat: repeat-x;
+            background-position: 0px 0px;
+            
+        }
+
+        #plane{
+           position: absolute; /* 절대위치 (부모요소를 기준으로 한 배치방법*/
+           left:270px; /* x 축을*/
+           top:50px; /* y 축을 */
+            width: 50px;
+        }
+
+        button{
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+
+    <script>
+        var xleft = 270;
+        var ytop = 50;
+        var xback = 0;
+
+        function moveLeft(){
+            xleft = xleft - 10;
+            document.getElementById("plane").style.left = xleft + "px";
+        }
+
+        function moveRight(){
+            xleft = xleft + 10;
+            document.getElementById("plane").style.left = xleft + "px";
+        }
+
+        function moveUp(){
+            ytop = ytop - 10;
+            document.getElementById("plane").style.top = ytop + "px";
+        }
+
+        function moveDown(){
+            ytop = ytop + 10;
+            document.getElementById("plane").style.top = ytop + "px";
+        }
+
+        function moveBg(){
+            xback = xback  -1 ;
+            document.body.style.backgroundPosition = xback + "px 0px";
+        }
+
+        function auto(){
+            // 형식 setInterval("호출하고픈 함수명()" , 호출간격 (1/10000초까지 표현))
+            setInterval("moveBg()",10);
+        }
+
+    </script>
+</head>
+<body > 
+    <button onclick="moveLeft()">◀</button> 
+    <button onclick="moveRight()">▶</button> 
+    <button onclick="moveUp()">▲</button>
+    <button onclick="moveDown()">▼</button>
+    <button onclick="moveBg()">수동 배경이동</button>
+    <button onclick="auto()">자동 배경이동</button>
+    
+    <img src="https://wiki.altitudegame.com/images/1/1a/Biplane_HD.png"   id = "plane"/>
+
+   
+</body>
+</html>
