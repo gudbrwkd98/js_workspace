@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+         var a = 1 ;
+         
+      
+        function CreateImage(){
+            var b = document.getElementById("number").value;
+            b = parseInt(b);
+            var img = document.createElement("img");
+            img.src = "https://png.pngtree.com/png-clipart/20191123/original/pngtree-basketball-icon-set-of-basketball-balls-isolated-on-white-background-png-image_5199215.jpg" ;
+            img.style.width = 50 + "px";
+            var img2 = document.createElement("img");
+            img2.src = document.getElementById("path").value;
+            img2.style.width = 50 + "px";
+           
+
+
+            if(a % b== 0 ){
+                document.body.appendChild(img2); 
+            }else {
+                 document.body.appendChild(img);
+            }
+
+            a++;
+
+        }
+
+        function auto() {
+            setInterval("CreateImage()",40);
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id = "number" placeholder="몇번째마다 생성>?">
+    <input type="text" id = "path" placeholder="이미지">
+    <button onclick="CreateImage()">이미지 생성</button>
+    <button onclick="auto()">자동 생성</button>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>드래그 효과 내기</title>
+    <style>
+        body{
+            margin: 0px;
+        }
+        #hero{
+            border: 1px solid red;
+        
+            position: absolute; /* 부모를 기준으로 한 위치 기준*/
+            left: 0px;
+            top: 0px;
+        }
+        .wrapper{
+            width: 100%;
+            height: 700px;
+            background:yellow;
+            position: relative; /*자식때문에 자리를 지켜야함 */
+        }
+
+    </style>
+        
+    <script>
+         
+         var hero ;
+        function init(){
+            //프로그램 가동시 이미지의 너비와 
+
+            hero = document.getElementById("hero");
+            hero.style.width = 60 + "px";
+            hero.style.height = 60 + "px";
+         
+            
+        }
+
+        function getPos(){
+          
+
+            var x = event.clientX;
+            var y = event.clientY;
+            
+             
+
+
+            var w = parseInt(hero.style.width);
+            var h =  parseInt(hero.style.height);
+
+            hero.style.left = (x - (w/2))+"px";
+            hero.style.top = (y - (h/2))+"px";
+          
+            
+
+        }
+
+        var flag = false;
+
+        function setFlag(){
+            flag = !flag
+            if(flag == true){
+            hero.style.border = "3px dotted red";
+            }else{
+            hero.style.border = "0px";
+            }
+        }
+
+        function follow(){
+
+            if(flag){
+                
+                getPos();
+          
+
+            }
+        }
+
+
+         
+    </script>
+</head>
+<body onmousemove="follow()" onload="init()">
+
+    <div class="wrapper">
+<!-- 물체를 대상으로 마우스를 누르고 있을때만 -->
+    <img src="../image/hero/hero/image1.png"  id= "hero" onclick="setFlag()"/>
+</div>
+</body>
+</html>

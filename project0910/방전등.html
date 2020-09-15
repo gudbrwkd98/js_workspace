@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrapper{
+            width: 800px;
+            height: 600px;
+            margin:auto;
+            overflow: hidden;
+        }
+
+        #code{
+            width: 100px;
+            height: 100%;
+            background: #cccccc;
+            float: left;
+        }
+
+        #mask{
+            width: 700px;
+            height: 100%;
+            background: black;
+            float: left;
+            opacity: 0;
+        }
+
+       
+
+        #btn{
+            margin-top: 300%;
+            margin-left: 25%;
+        }
+    </style>
+
+    <script>
+        var bg ;
+        var con = false;
+        var op;
+
+        function onoff(){
+             var bg = (con) ? "../image/light/switch_on.png" : "../image/light/switch_off.png";
+             document.getElementById("btn").src = bg;
+             document.getElementById("mask").style.opacity = 0.8;
+             con = !con;
+        }
+    </script>
+</head>
+
+<body>
+    <div id = "wrapper">
+        <div id = "code">
+            <img src="../image/light/switch_on.png" alt="" id ="btn" onclick="onoff()">
+        </div>
+
+        <div id = "room">
+            <img src="../image/light/room.jpg" width="700px" height="600px"/>
+        </div>
+        <div id = "mask">
+        </div>
+
+     
+    </div>
+</body>
+</html>

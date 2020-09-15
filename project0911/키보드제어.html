@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+         #wrapper{
+            background-image: url("../image/bg1.jpg");
+            width: 1024px;
+            height: 768px;
+            background-size: 1024px 768px;
+            margin: auto;
+            position: relative;
+            overflow:hidden;
+            background-position: 0px 0px;
+         }
+
+         #bird{
+             width: 100px;
+             height: 100px;
+             /* 이미지를 wrapper 라는 div 를 기준으로 즉 부모로 위치를 설정하자! 결국 wrapper 에 대한 
+             absolute 로 처리하자 
+             */
+             position: absolute;
+      
+         }
+     </style>
+
+     <script>
+            
+            xleft = 0;
+            ytop = 0;
+            xback = 0;
+            function moveRight(){
+                xleft = xleft+10;
+                if(xleft >= 924){
+                    xleft = 924;
+               }
+                document.getElementById("bird").style.left = xleft + "px";
+            }
+
+            function moveLeft(){
+                xleft = xleft-10;
+                if(xleft <= 0 ){
+                    xleft = 0;
+               }
+                
+                document.getElementById("bird").style.left = xleft + "px";
+            }
+
+            function moveUp(){
+                ytop = ytop-10;
+               if(ytop <= 0 ){
+                   ytop = 0;
+               }
+                document.getElementById("bird").style.top = ytop + "px";
+            }
+
+            function moveDown(){
+                ytop = ytop+10;
+                if(ytop >= 668 ){
+                   ytop = 668;
+               }
+                document.getElementById("bird").style.top = ytop + "px";
+            }
+         function joystick(){
+            var x = event.keyCode ;
+            
+            if(x == 38){  //^
+               moveUp();
+            }else if ( x == 37){ //<
+                moveLeft();
+            }else if (x == 39){ // >
+                moveRight();
+            }else if (x == 40){//V
+                moveDown();
+            }
+          
+         }
+
+         function moveBg(){
+            xback--;
+            document.getElementById("wrapper").style.backgroundPosition = xback + "px 0px";
+         }
+
+         function auto(){
+             setInterval("moveBg()",10);
+         }
+     </script>
+</head>
+<body onkeydown="joystick()">
+    <audio controls>
+        <source src="../image/sound/bgm.mp3" type="audio/mpeg"/> 
+    </audio>
+
+    <button onclick="auto()">배경 테스트</button>
+    <div id ="wrapper" >
+        <img src="https://www.nicepng.com/png/detail/2-21959_angry-birds-png-angry-bird-png.png" id ="bird" />
+
+    </div>
+    
+</body>
+</html>

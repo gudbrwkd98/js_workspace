@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    #wrapper{
+        width: 700px;
+        height: 700px;
+        background-color: turquoise;
+        margin: auto;
+        position: relative;
+    }
+</style>
+<script>
+    var box;
+    var x =  0 ;
+    var y = 100;
+    var ud = false;
+    var rt = false;
+    function init() {
+        
+       box = document.getElementById("box");
+
+        box.style.width =   50 + "px";
+        box.style.height = 50 + "px";
+        box.style.background = "red";
+        box.style.position = "absolute";
+        box.style.left = x + "px";
+        box.style.top = y + "px";
+
+    }
+
+    function move(){
+
+        if(y >= 700-parseInt(box.style.height)){
+            ud = true;
+        }
+
+        if(x >= 700 - parseInt(box.style.width)){
+            rt = true;
+        }
+
+        if(y <= 0){
+            ud = false;
+        }
+
+        if(x <= 0 ){
+            rt = false;
+        }
+
+        if(ud == false && rt == true){
+            x = x -15 ;
+                y = y + 5;
+        }
+
+        if(ud == true){
+            x = x + 5;
+            y = y - 8 ;
+            if(rt == true){
+                x = x - 15 ;
+                y = y - 4;
+             
+            }
+        }else{
+
+        x = x + 5;
+        y = y + 8 ;
+        
+        }
+
+     box.style.top = y + "px";
+    box.style.left = x + "px";
+        
+        console.log(x);
+        console.log(y);
+   
+}
+
+function auto(){
+    setInterval("move()",15);
+}
+
+
+</script>
+</head>
+<body onload="init()">
+    
+
+    <div id = "wrapper">
+        <button onClick="move()">수동</button>
+        <button onClick ="auto()">자동</button>
+
+        <div id = "box"></div>
+    </div>
+</body>
+</html>

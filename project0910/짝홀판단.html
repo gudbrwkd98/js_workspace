@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function openPrompt(){
+           var n = prompt("원하시는 숫자를 넣어주세요");
+
+         var msg =  (n % 2 ==  0) ?   "짝수" :  "홀수";
+           
+           
+           document.getElementById("result").value = msg + "입니다";
+         
+        }
+    </script>
+</head>
+<body>
+    
+    <button onclick="openPrompt()">프롬프트 띄우기</button>
+    <!-- 아래의 텍스트 박스에 짝수인지 홀수인지 여부를 출력하려고  -->
+    <input type="text" value="결과를 기다리고있어요." id = "result"/>
+</body>
+</html>

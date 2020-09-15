@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+ 
+          
+        function init(){
+       
+
+
+            for (var index = 2000; index >= 1930; index--) {
+                     
+                    var y = document.createElement("option");
+                    y.text = index;
+                    var aa = document.getElementById("year");
+                    aa.add(y);
+                        
+            }
+
+            for (var index2 = 1; index2 <= 12; index2++) {
+                
+                var m = document.createElement("option");
+                m.text = index2 + "월";
+
+                var month = document.getElementById("month");
+
+                month.appendChild(m);
+                
+            }
+
+    
+
+        }
+    </script>
+</head>
+<body onload="init()">
+    출생연도 : 
+    <select id= "year">
+        
+    </select>
+
+     
+    <select id="month">
+        
+    </select>
+</body>
+</html>

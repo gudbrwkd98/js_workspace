@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    #box{
+        width: 100px;
+        height: 100px;
+        background:red;
+        position: absolute;
+        left:0px;
+        top : 200px;
+
+    }
+    </style>
+
+    <script>
+        var    xleft = 0 ;
+       var     yleft =500;
+       var zleft =0;
+        var con  = true;
+        function btnMove(){
+            
+            num = (con) ? xleft =xleft + 10 : xleft = xleft - 10;
+
+        
+            var op = (xleft == 500)? con = false : true;
+            var op = (xleft == 0) ? con =true : false;
+             
+             console.log(con);
+            
+          document.getElementById("info").value = num;
+           document.getElementById("box").style.left = num + "px";
+            
+           
+           
+
+
+        }
+    </script>
+</head>
+<body>
+
+    <button onclick ="btnMove()">움직이기</button>
+    <input type="text" id = "info"   />
+    <div id = "box"> 
+    </div>
+</body>
+</html>

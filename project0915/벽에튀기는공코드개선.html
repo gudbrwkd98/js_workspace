@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script>
+/*이 예제에서는  body 에 직접 태그를 작성하지 말자!!
+순수 자바스크립트로만, 디자인까지 작성해보자...(실력향상)*/
+var ball;
+var wrapper;
+ var x =0 ;
+ var y = 0;
+ var xStep = 5;
+ var yStep = 4;
+ flag = true;
+function init(){
+    createButton();
+    //alert('문서를 다 읽었어요');    
+    wrapper=document.createElement("div"); // <div></div>와 동일
+    wrapper.style.width=600+"px";
+    wrapper.style.height=600+"px";
+    wrapper.style.background="yellow";
+    wrapper.style.margin="auto";
+    wrapper.style.position="relative";//자식때문에...
+    document.body.appendChild(wrapper); // <body>태그 안에 추가
+
+    //공 추가하기 
+    ball=document.createElement("img"); // <img /> 와 동일
+    ball.src="https://png.pngtree.com/png-vector/20191010/ourmid/pngtree-soccer-ball-icon-png-image_1802783.jpg"; // <img src=""/> 와 동일
+    ball.style.width=50+"px";
+    ball.style.height=50+"px";
+    ball.style.position="absolute"; //부모인 wrapper를 기준
+    ball.style.left=100+"px";
+    ball.style.top=50+"px";
+    wrapper.appendChild(ball);//body에 추가 
+
+        
+}
+ 
+
+    
+    function createButton(){
+    //동적으로 버튼을 생성하고,  click 이벤트 마져도 프로그래밍적으로 
+    //처리해보자!!
+    var bt1=document.createElement("button");//수동버튼 
+    var bt2=document.createElement("button");//자동버튼
+    var bt3=document.createElement("button");//자동버튼
+    
+    //버튼에 click 이벤트 추가하기!!
+    bt1.addEventListener("click", function(){
+        //이름없는 함수를 익명함수라 하고 , 이 영역에 코드를 작성하면
+        //해당 이벤트가 발생했을때, 이 코드가 동작하게 된다..
+        //alert("나 눌렀어?");       
+        //수동 움직임..sd
+        move();
+    }); //버튼에 이벤트 감지가 등록!!
+
+
+    bt2.addEventListener("click",function(){
+
+            setInterval("move()",30);
+    });
+
+    bt3.addEventListener("click",function(){
+
+            flagChange();
+    });
+
+    bt1.innerText="수동";//<button>수동</button> 와 동일
+    bt2.innerText="자동";//<button>자동</button> 와 동일
+    bt3.innerText="멈춤";//<button>자동</button> 와 동일
+    document.body.appendChild(bt1);//body에 추가
+    document.body.appendChild(bt2);//body에 추가
+    document.body.appendChild(bt3);//body에 추가
+}
+
+//공의 좌표를 증,감 시켜 움직임 효과를 내본다!
+function move(){
+
+    if(flag == true){
+    //증감처리 
+    x = x + xStep;
+    y = y + yStep; 
+
+    //공의 좌표를 변경 
+    ball.style.left=x+"px";
+    ball.style.top=y+"px";
+
+    //공이 우측 벽에 도달하면... 닿은순간x좌표= wrapper너비 - 공의너비
+    if(x >= (parseInt(wrapper.style.width) - parseInt(ball.style.width)) || x <= 0 ){
+        //x축으로 감소하면서 이동.. 
+        ball.style.border="1px solid red";    
+        xStep = -xStep;   
+    }
+    if(y >= (parseInt(wrapper.style.height) - parseInt(ball.style.height)) || y <= 0 ){
+        //x축으로 감소하면서 이동.. 
+   
+        yStep = -yStep;        
+    }
+
+ 
+    }else {
+
+    }
+    
+    //공이 바닥에 도달하면...닿은순간y좌표 = 바닥의y좌표 - 공의높이
+}
+
+function flagChange(){
+    flag = !flag;
+}
+  
+ 
+</script>
+</head>
+<body onLoad="init()">
+</body>
+</html>

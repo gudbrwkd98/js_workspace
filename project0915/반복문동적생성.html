@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 700px;
+            height: 700px;
+            background:yellow;
+            margin:auto;
+            overflow: scroll;
+        }
+    </style>
+    <script>
+        function create(){
+
+            //지금까지는 문서내의 요소에 접근하기 위해 아이디를 부여하고 접근
+            //하였으나, 자바스크립트에서는  selector를 이용한 접근방법도 지원한다
+            //selector란?  css에서 요소를 특정짓기 위한 지칭법 
+            
+
+            var box = document.querySelector("div");
+
+             //css의 선택자는 모두 표현가능
+            var x = document.querySelector("input[type='text']").value;
+
+            x = parseInt(x);
+             for (var index = 0; index <x; index++) {
+            var img = document.createElement("img");
+
+            img.src = "https://png.pngtree.com/png-vector/20191010/ourmid/pngtree-soccer-ball-icon-png-image_1802783.jpg";
+            img.style.width = 50 + "px";
+           
+    
+                box.appendChild(img);
+            }
+          
+            
+        }
+    </script>
+</head>
+<body>
+    <button onclick="create()"> 동적생성</button>
+    <input type = "text" />
+    <div>이 안에 이미지를 동적으로 오게할꺼임</div>
+</body>
+</html>
