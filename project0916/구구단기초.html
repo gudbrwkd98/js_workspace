@@ -1,0 +1,21 @@
+<script>
+    var num = prompt("단 을 입력해주세요");
+    num = parseInt(num);
+    
+    
+    while(isNaN(num)){
+        var num = prompt("숫자만 입력해주세요");
+    num = parseInt(num);
+    }
+
+    for(var i = num ; i >= 2; i--){
+        document.write("-------------<br/>");
+        document.write(i + "단 출력<br/>");
+        document.write("-------------<br/>");
+        for(var y = 1; y <= 9 ; y++){
+            document.write(i + "*" + y + "=" + i*y + "<br/>")
+    
+        }
+        
+    }
+</script>

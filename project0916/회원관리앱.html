@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrapper{
+            width: 700px;
+            height: 600px;
+            background-color:yellow;
+            margin: auto;
+            position: relative;
+            overflow: scroll;
+        }
+        #register-area{
+            width: 200px;
+            height: 100%;
+            background-color : gray;
+            position: absolute;
+        }
+
+        #result-area{
+            width: 500px;
+            height: 100%;
+            background-color: red;
+            position: absolute;
+            margin-left: 200px;
+        }
+
+        input[type='text'],[type='password']{
+            margin:5px 5px;
+            border-radius: 4px;
+            padding: 6px;
+
+        }
+
+        button{
+            margin:0px 5px 0px 5px;
+            width:80px;
+            padding:6px;
+        }
+    </style>
+    <script>
+        var count = 0 ;
+        function createTable(){
+            count++;
+            var id = document.querySelector("input[name='ID']");
+            var pass =  document.querySelector("input[name='Password']");
+            var name = document.querySelector("input[name='name']");
+
+           var area =  document.getElementById("result-area");
+
+           var str = "<table border='2px red' width='100%'>";
+           str = str+"<tr>";
+
+           str = str+"<td>ID</td>";
+           str = str+"<td>PASSWORD</td>";
+           str = str+"<td>NAME</td>";
+           str = str + "</tr>";
+
+     
+      
+
+        for(var i = 0; i<count; i++ ){
+            str = str+"<tr>";
+           str = str+"<td>"+id.value +"</td>";
+           str = str+"<td>"+pass.value+"</td>";
+           str = str+"<td>"+name.value+"</td>";
+           
+           str = str + "</tr>";
+
+            }
+           str = str + "</table>";
+      
+           area.innerHTML = str;
+        }
+    </script>
+</head>
+<body>
+    
+    <div id = "wrapper">
+        <div id = "register-area">
+            <form onsubmit="event.preventDefault()">
+                <input type="text" placeholder="ID입력..."  name = "ID"/>                
+                <input type="password" placeholder="Password입력..." name = "Password"/>                
+                <input type="text" placeholder="Name 입력..."  name = "name"/>  
+                
+                <button onclick="createTable()">등록</button>
+                <button>지우기</button>
+            </form>
+        </div>
+        <div id = "result-area">등록될 표가 나올곳</div>
+    </div>
+</body>
+</html>

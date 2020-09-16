@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+  
+    function createTable(){
+   
+    document.write("<table border='2px' width='600px'>");
+    
+         
+         
+  
+       
+    
+    for(var i=9;i >=1;i--){
+        document.write("<tr>");
+            for(var x = 1 ; x <=5 ; x++){
+                document.write("<td> " +i+0+x+" 호</td>")
+            }
+    
+        document.write("</tr>");
+    }
+
+
+     
+    document.write("</table>");
+
+ 
+
+
+    }
+</script>
+<body onload="createTable()">
+
+    <!-- <table border="2px" width = "600px">
+        <tr>
+            <td>301호</td>
+            <td>302호</td>
+            <td>303호</td>
+        </tr>
+        <tr>
+            <td>201호</td>
+            <td>202호</td>
+            <td>203호</td>
+        </tr>
+        <tr>
+            <td>101호</td>
+            <td>102호</td>
+            <td>103호</td>
+        </tr>
+    </table> -->
+    
+</body>
+</html>
