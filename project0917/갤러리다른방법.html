@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrapper{
+            width: 700px;
+            height: 600px;
+             border : 2px solid black ;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        #list{
+            width: 150px;
+            height: 100%;
+           
+            float: left;
+            overflow: scroll;
+        }
+
+        #content{
+            width: 550px;
+            height: 100%;
+           
+            float: left;
+        }
+
+       #list img{
+            width: 150px;
+    
+        }
+
+        #content img{
+            width:450px;
+            padding: 50px;
+        }
+
+    </style>
+
+    <script>
+
+       
+        function showImage(x){
+            var content = document.querySelector("#content img");
+
+            content.src = "../../image/"+x+".jpg";
+           
+        
+        }
+    </script>
+</head>
+<body onload= "init()">
+
+    <div id = "wrapper">
+        <div id = "list">
+            <img src = "../../image/1.jpg" onmousemove="showImage(1)" id="img1">
+            <img src = "../../image/2.jpg" onmousemove="showImage(2)" id="img2">
+            <img src = "../../image/3.jpg" onmousemove="showImage(3)" id="img3"> 
+            <img src = "../../image/4.jpg" onmousemove="showImage(4)"id="img4" >
+            <img src = "../../image/5.jpg" onmousemove="showImage(5)" id="img5">
+            <img src = "../../image/6.jpg" onmousemove="showImage(6)" id="img6">
+            <img src = "../../image/7.jpg" onmousemove="showImage(7)" id="img7">
+            <img src = "../../image/8.jpg" onmousemove="showImage(8)" id="img8">
+        </div>
+        <div id = "content">
+            <img />
+        </div>
+    </div>
+    
+</body>
+</html>

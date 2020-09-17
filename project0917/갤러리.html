@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrapper{
+            width: 700px;
+            height: 600px;
+             border : 2px solid black ;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        #list{
+            width: 150px;
+            height: 100%;
+           
+            float: left;
+            overflow: scroll;
+        }
+
+        #content{
+            width: 550px;
+            height: 100%;
+           
+            float: left;
+        }
+
+       #list img{
+            width: 150px;
+    
+        }
+
+    </style>
+
+    <script>
+
+       
+        function showImage(x){
+            var content = document.getElementById("content");
+            content.style.backgroundImage = "url('"+ x+"')";
+            content.style.backgroundSize = "550px 100%"
+        
+        }
+    </script>
+</head>
+<body onload= "init()">
+
+    <div id = "wrapper">
+        <div id = "list">
+            <img src = "../../image/1.jpg" onmousemove="showImage(document.getElementById('img1').src)" id="img1">
+            <img src = "../../image/2.jpg" onmousemove="showImage(document.getElementById('img2').src)" id="img2">
+            <img src = "../../image/3.jpg" onmousemove="showImage(document.getElementById('img3').src)" id="img3"> 
+            <img src = "../../image/4.jpg" onmousemove="showImage(document.getElementById('img4').src)"id="img4" >
+            <img src = "../../image/5.jpg" onmousemove="showImage(document.getElementById('img5').src)" id="img5">
+            <img src = "../../image/6.jpg" onmousemove="showImage(document.getElementById('img6').src)" id="img6">
+            <img src = "../../image/7.jpg" onmousemove="showImage(document.getElementById('img7').src)" id="img7">
+            <img src = "../../image/8.jpg" onmousemove="showImage(document.getElementById('img8').src)" id="img8">
+        </div>
+        <div id = "content"></div>
+    </div>
+    
+</body>
+</html>

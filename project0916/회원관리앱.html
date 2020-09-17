@@ -43,13 +43,14 @@
     </style>
     <script>
         var count = 0 ;
+        var area;
         function createTable(){
             count++;
             var id = document.querySelector("input[name='ID']");
             var pass =  document.querySelector("input[name='Password']");
             var name = document.querySelector("input[name='name']");
 
-           var area =  document.getElementById("result-area");
+            area=  document.getElementById("result-area");
 
            var str = "<table border='2px red' width='100%'>";
            str = str+"<tr>";
@@ -75,6 +76,10 @@
       
            area.innerHTML = str;
         }
+
+        function remove(){
+            area.innerHTML="";
+        }
     </script>
 </head>
 <body>
@@ -87,7 +92,7 @@
                 <input type="text" placeholder="Name 입력..."  name = "name"/>  
                 
                 <button onclick="createTable()">등록</button>
-                <button>지우기</button>
+                <button onclick="remove()">지우기</button>
             </form>
         </div>
         <div id = "result-area">등록될 표가 나올곳</div>
