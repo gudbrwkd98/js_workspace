@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/lib.js"></script>
+    <script>
+        var lunch = new Array("밥","쌀","빵","국수");
+        var aaa ;
+        var num ;
+        var button;
+        function init(){
+            aaa = document.createElement("h1");
+            btn = document.createElement("button");
+            btn.innerText ="점심결정";
+            btn.addEventListener("click",function(){
+                num = getRandom(lunch.length-1);
+                aaa.innerText = lunch[num];
+              
+            });
+            
+            document.body.appendChild(btn);
+            document.body.appendChild(aaa);
+            
+
+            
+        }
+
+        window.addEventListener("load",function(){
+            init();
+        })
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        var wrapper;
+        var sel;
+        var op;
+        var colors = ["-----색깔 선택-----  ","red","yellow","orange","green","blue","navy","purple"];
+
+        window.addEventListener("load",function(){
+            init();
+        });
+
+        function init(){
+            wrapper = document.createElement("div");
+            wrapper.style.width = 400 + "px";
+            wrapper.style.height = 400 + "px";
+            wrapper.style.border = 5 + "px solid #dfeeff";
+            wrapper.style.margin = "auto";
+
+            sel = document.createElement("select");
+            sel.style.width = 100 + "%";
+            sel.style.height = 40 + "px";
+            sel.style.background = "dodgerblue";
+            sel.style.color = "white";
+            sel.style.fontSize = 2 + "rem";
+
+            for(var i = 0 ; i < colors.length; i++){
+
+            op = document.createElement("option");
+            op.value = colors[i];
+            op.text = colors[i];
+                
+    
+            sel.appendChild(op);
+            }
+
+            sel.addEventListener("change",function(){
+                wrapper.style.background = this.value;
+            });
+            wrapper.appendChild(sel);
+            document.body.appendChild(wrapper);
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

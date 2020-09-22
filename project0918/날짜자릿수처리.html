@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/lib.js"></script>
+    <style>
+        input[type='text']{
+            height: 70px;
+            font-size: 1.5rem;
+            text-align: right;
+        }
+    </style>
+    <script>
+     
+        var yy;
+        var mm;
+        var dd;
+
+        window.addEventListener("load",function(){
+            yy = document.getElementById("year");
+            mm = document.getElementById("month");
+            dd = document.getElementById("date");
+        });
+function addZero(){
+ 
+  
+
+    var result = document.getElementById("result");
+
+    result.innerText = parseInt(yy.value) + "-" +  getZeroDate(parseInt(mm.value)) + "-" + getZeroDate(parseInt(dd.value));
+
+}
+
+function removeZero(){
+    var result = document.getElementById("result");
+
+result.innerText = parseInt(yy.value) + "-" +   parseInt(mm.value)+ "-" +  parseInt(dd.value);
+}
+    </script>
+</head>
+<body>
+<h5>생년 월일 : </h5>
+    <input type="text" id="year" />년
+    <input type="text" id="month" />월
+    <input type="text" id="date" />일
+        <button onclick="addZero()">확인</button>
+        <button onclick="removeZero()">확인</button>
+
+        <h1 id="result">데이터 결과</h1>
+</body>
+</html>

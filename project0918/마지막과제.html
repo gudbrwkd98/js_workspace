@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var warrap;
+        var ball;
+        var txtbox1;
+        var txtbox2;
+        var button1;
+        var targetX=100;
+        var targetY=100;
+        var a = 0.1;
+        var nx;
+        var ny;
+
+
+        window.addEventListener("load",function(){
+            //배경
+            warrap  = document.createElement("div");
+            warrap.style.width = 100 + "%";
+            warrap.style.height = 600 + "px";
+            warrap.style.border = 2 + "px solid black";
+            warrap.style.position = "relative";
+            //텍스트박스1
+            txtbox1 = document.createElement("input");
+            txtbox1.type = "text";
+            txtbox1.placeholder = "x 좌표";
+            txtbox1.style.textAlign = "right";
+            txtbox1.style.margin = 20+ "px";
+            txtbox1.style.padding = 5 + "px";
+            txtbox1.style.fontSize = 1+ "rem";
+            //텍스트박스2
+            txtbox2 = document.createElement("input");
+            txtbox2.type = "text";
+            txtbox2.placeholder = "y 좌표";
+            txtbox2.style.textAlign = "right";
+            txtbox2.style.margin = 20+ "px";
+            txtbox2.style.padding = 5 + "px";
+            txtbox2.style.fontSize = 1+ "rem";
+            //버튼
+            button1 = document.createElement("button");
+            button1.style.margin = 20 + "px";
+            button1.innerText = "확인";
+            button1.style.backgroundColor = "#79EE92 ";
+            button1.style.border = 0 + "px";
+            button1.style.borderRadius = 5+ "px";
+            button1.style.padding = 7 +"px";
+            //공 
+            ball = document.createElement("div");
+            ball.style.width = 50 + "px";
+            ball.style.height = 50 + "px";
+            ball.style.backgroundColor = "red";
+            ball.style.position = "absolute";
+            ball.style.left = 100 + "px";
+            ball.style.top = 100 +"px";
+            ball.style.borderRadius = 30 + "px";
+    
+ 
+            setInterval("move()",10);
+          
+            //버튼실행시 targetX,targetY 가져오기
+            button1.addEventListener("click",function(){
+          
+               targetX = txtbox1.value;
+               targetY = txtbox2.value;
+
+            });
+
+            warrap.appendChild(txtbox1);
+            warrap.appendChild(txtbox2);
+            warrap.appendChild(button1);
+            warrap.appendChild(ball);
+
+
+
+            document.body.appendChild(warrap);
+        });
+ 
+        //공움직임
+        function move(){
+         
+            ball.style.left =  parseFloat(ball.style.left)  + a*(targetX - parseFloat(ball.style.left)) + "px";
+            ball.style.top = parseFloat(ball.style.top)  + a*(targetY - parseFloat(ball.style.top)) + "px";
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src = "../js/lib.js"></script>
+    <style>
+        #wrapper{
+            width: 100%;
+            height: 600px;
+            margin: auto;
+            position: relative;
+        }
+
+        #wrapper img{
+            width: 100%;
+            height: 600px;
+        }
+    </style>
+    <script>
+       
+
+        var sx=1;
+        var sy=1;
+        var bg;
+        var wrapper;
+        var light ;
+        var targetX = 100;
+        var targetY = 150;
+        var a = 0.1;
+        var count = 0;
+        var r1,r2;
+        window.addEventListener("load",function(){
+            wrapper = document.getElementById("wrapper");
+         
+        
+            auto();
+            createLight();
+            setInterval("move()",10)
+            
+        });
+
+        function moveBg(){
+            //스케일 키우기 
+             bg = document.getElementById("bg");
+            sx += 0.00001;
+            sy += 0.00001;
+            bg.style.transform = "scale("+ sx +","+ sy + ")";
+           
+        }
+
+        function auto(){
+            setInterval("moveBg()",10);
+        }
+        //반딧불 생성
+
+        function createLight(){
+                //없는 것을 생성하므로,  createElement 
+                light = document.createElement("div"); // <div></div>
+                light.style.width=30+"px";
+                light.style.height=30+"px";
+                light.style.background="yellow";
+                //위치를  absolute 로 해야,  div 내에서 좌표가 지정되고,  img 태그와
+                //자리싸움을 벌이지 않는다 
+                light.style.position="absolute";
+                light.style.left=100+"px";
+                light.style.top=150+"px";
+                light.style.borderRadius=50+"px";//사각 모서리를 마모시키자 
+                light.style.opacity = 0.8;
+                        wrapper.appendChild(light);
+        }
+
+        function move() {
+                //반디위치는 = 현재반디위치 + 비율계수*거리(목표지점-현재반디위치)
+                count++; //매초마다 랜덤숫자부여
+                if(count%200 == 0){
+                 r1 = getRandom(900);
+                 r2 = getRandom(500);
+                }
+                console.log(count);
+            light.style.left=parseInt(light.style.left)+a*(r1-parseInt(light.style.left))+"px";
+            light.style.top=parseInt(light.style.top)+a*(r2-parseInt(light.style.top))+"px";
+        
+        }
+    </script>
+</head>
+<body>
+    <div id = "wrapper">
+        <img id="bg" src = "https://png.pngtree.com/thumb_back/fw800/back_our/20190623/ourmid/pngtree-summer-night-bush-little-girl-fluttering-firefly-background-image_244084.jpg" >
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+   
+    </style>
+    <script>
+        var wrapper;
+        var pic;
+        var mask;
+        var targetX;
+        var targetY;
+        var a = 0.2;
+
+        window.addEventListener("load", function(){
+           wrapper = document.createElement("div");
+            wrapper.style.width = 600 + "px";
+            wrapper.style.height = 600 + "px";
+            wrapper.style.position = "relative";
+            wrapper.style.margin = "auto";
+            wrapper.style.backgroundColor = "black";
+            wrapper.style.overflow = "hidden";
+
+
+
+            wrapper2 = document.createElement("div");
+            wrapper2.style.width = 600 + "px";
+            wrapper2.style.height = 600 + "px";
+            wrapper2.style.position = "relative";
+        
+
+            for (let index = 1; index <= 9 ; index++) {
+            pic = document.createElement("img");
+  
+            pic.src="../../image/travel/travel/" +index+".jpg";
+            pic.style.width = 200 + "px";
+            pic.style.height = 200 + "px";
+            pic.style.float = "left";
+       
+     
+
+            wrapper2.appendChild(pic);
+
+            wrapper2.style.top = 0 + "px";
+            wrapper2.style.left = 0 + "px";
+            
+            wrapper.appendChild(wrapper2);
+ 
+                
+            }
+
+            document.body.appendChild(wrapper);
+            setInterval("move()",50);
+        });
+
+
+        function joystick(){
+            var x = event.keyCode ;
+
+
+            if(x == 38){  //^
+            moveUp();
+            }else if ( x == 37){ //<
+            moveLeft();
+                
+            }else if (x == 39){ // >
+            moveRight();
+                 
+            }else if (x == 40){//V
+            moveDown();
+                
+            }
+           
+
+        }
+
+    function moveUp(){
+        targetY =+ 200;
+        if(targetY <= 400 ){
+            targetY = 400;
+        }
+        return targetY;
+       
+    }
+
+    function moveDown(){
+        return  targetY =- 200; 
+       
+    }
+
+    function moveRight(){
+        targetX =- 200;
+        if(targetX <= -200){
+            targetX = -200;
+        }
+        return  targetX;
+        
+    }
+
+    function moveLeft(){
+        targetX =-+200;
+        if(targetX <= 200){
+            targetX = 200;
+        }
+        return  targetX ;
+       
+    }
+
+
+    function move(){
+        wrapper2.style.top = parseFloat(wrapper2.style.top) + a*(targetY - parseFloat(wrapper2.style.top)) + "px";
+        wrapper2.style.left = parseFloat(wrapper2.style.left) + a*(targetX - parseFloat(wrapper2.style.left)) + "px";
+        console.log(targetY,targetX)
+        
+    }
+    </script>
+</head>
+<body onkeydown="joystick()">
+ 
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var wrapper;
+        var cars = ["red","orange","yellow","green","blue","navy","purple"];
+        var content;
+        var contentimage;
+
+        window.addEventListener("load",function(){
+            init();
+        });
+
+        function init(){
+            wrapper = document.createElement("div");
+            wrapper.style.backgroundColor = "black";
+            wrapper.style.height = 700+"px";
+            wrapper.style.width = 700 + "px";
+            wrapper.style.margin = "auto";
+            wrapper.style.position = "relative";
+
+            content = document.createElement("div");
+            content.style.backgroundColor = "pink";
+            content.style.width = 100 +"%";
+            content.style.height = 700 + "px";
+           
+
+
+
+      
+            for(var i = 0 ; i < 7; i++ ){
+                color = document.createElement("div");
+            color.style.height = 100 + "px";
+            color.style.width = 100 + "px";
+            color.style.float = "left";
+            color.style.backgroundColor = cars[i];
+            color.addEventListener("mouseover",function(){
+              
+                content.style.backgroundColor = this.style.backgroundColor;
+
+            });
+            wrapper.appendChild(color);
+
+            }
+
+            wrapper.appendChild(content);
+            document.body.appendChild(wrapper);
+
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

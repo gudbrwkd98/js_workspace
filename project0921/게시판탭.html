@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrapper{
+            width: 600px;
+            height: 500px;
+         
+            margin: auto;
+
+        }
+
+        #nameTag{
+            width: 600px;
+            height: 50px;
+            background: blue;
+            overflow: hidden;
+        }
+
+        #nameTag a{
+            text-decoration: none;
+            width: 200px;
+            height: 50px;
+            text-align: center;
+            float: left;
+          
+        }
+
+        #Posts{
+            height: 450px;
+            width:  600px;
+  
+        }
+
+        .Pp{
+            height: 450px;
+            width:  600px;
+        }
+
+    </style>
+
+    <script>
+        var announce;
+        var QnA;
+        var freeBored;
+        function init(){
+            announce = document.getElementById("announce");
+            QnA = document.getElementById("QnA");
+            freeBored = document.getElementById("freeBored");
+            panel1 =  document.getElementById("panel1");
+            panel1.style.display = "none";
+            panel1.style.backgroundColor = "cornflowerblue";
+            panel2 =  document.getElementById("panel2");
+            panel2.style.display = "none";
+            panel2.style.backgroundColor = "darkseagreen";
+            panel3 =  document.getElementById("panel3");
+            panel3.style.display = "none";
+            panel3.style.backgroundColor = "hotpink";
+            
+           
+        }
+
+        function showHide(x){
+            panel1.style.display = "none";
+            panel2.style.display = "none";
+            panel3.style.display = "none";
+
+            x = document.getElementById("panel"+x);
+
+            x.style.display = "block";
+ 
+
+        //   if(x == 'announce'){
+        //         panel1.style.display = "block";
+        //   }else if (x=='QnA' ){
+        //         panel2.style.display = "block";
+        //   }else if (x=='freeBored'){
+        //         panel3.style.display = "block";
+        //   }
+         
+
+
+
+
+          
+ 
+        }
+        window.addEventListener("load",function(){
+            init();
+        })
+    </script>
+</head>
+<body>
+    <div id = "wrapper">
+        <div id="nameTag">
+                    <a href="javascript:showHide('1')" id ="announce" style="background-color: cornflowerblue;">공지사항</a>
+                    <a href="javascript:showHide('2')" id ="QnA" style="background-color:darkseagreen;">QnA</a>
+                    <a href="javascript:showHide('3')" id = "freeBored" style="background-color:hotpink;">자유게시판</a>
+        </div>
+        <div id = "Posts">
+            <div id="panel1" class="Pp">
+                  
+              </div>
+            <div id="panel2" class="Pp">
+             
+              </div>
+            <div id="panel3" class="Pp">
+              
+              </div>
+
+
+        </div>
+    </div>
+</body>
+</html>

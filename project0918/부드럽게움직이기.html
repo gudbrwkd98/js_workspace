@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        #wrapper{
+            width: 100%;
+            height: 800px;
+            background-color: black;
+            position: relative;
+        }
+    </style>
+    <script>
+        var box ;
+        let a = 0.1; //비율계수가 높아질수록 남은거리에 대한 움직임이 커지므로 
+                            // 부드럽지 못하다.
+                            // 목표지점은 700으로 해놓자 
+                            // let - 고정변수
+        var deg = 5;
+        var targetX = 600; //박스가 도달할 표지점 
+        var targetY = 600;
+        window.addEventListener("load",function(){
+            box = document.getElementById("box");
+            box.style.position = "absolute";
+            box.style.left = 0 + "px";
+            box.style.top = 300 + "px"; 
+            auto();
+        });
+        //지금까지의 움직임과는 틀리게 목표지점에 한꺼번에 건너뛰지말고 
+        //조금씩 다가가자!! (감속도 운동)
+
+        function Move(){
+            //박스의 위치 = 현재박스의 위치  + n*(700(목표지점) - 현재박스위치);
+            var n  = parseInt(box.style.left);
+            var ny  = parseInt(box.style.top);
+            box.style.left = n  + a*(targetX - n) + "px";
+             box.style.top = ny  + a*(targetY - ny) + "px";
+            console.log(box.style.left);
+            //돌려보자 
+
+            box.style.transform = "rotate("+ deg++ +"deg)";
+        }
+
+
+        function auto () {
+            setInterval("Move()",10);
+        }
+
+        
+
+        function follow(){
+            targetX = event.clientX;
+            targetY = event.clientY;
+        }
+    </script>
+</head>
+<body >
+    <div id ="wrapper"  onclick="follow()">
+    <div id = "box"></div>
+    <button id ="btnMove" onclick="Move()">움직이기</button>
+    <button id ="btnMove" onclick="auto()">자동 움직이기</button>
+
+    </div>
+</body>
+</html>
