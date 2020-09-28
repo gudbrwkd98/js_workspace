@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    
+    </style>
+    <script>
+        var wrapper;
+        var pic;
+        var hint;
+        var answer;
+        var Ox;
+        var point;
+        var txt ;
+        var score = 0 ;
+        var n = 0;
+
+        var data=[
+            ["../../image/nation/1.png", "세계최대강대국","미국"],
+            ["../../image/nation/2.png", "산초","멕시코"],
+            ["../../image/nation/3.png", "로마제국","이탈리아"],
+            ["../../image/nation/4.png", "신사의 나라,007","영국"],
+            ["../../image/nation/5.png", "나찌","독일"],
+            ["../../image/nation/6.png", "무적함대","스페인"],
+            ["../../image/nation/7.png", "에펠탑","프랑스"],
+            ["../../image/nation/8.png", "차이코프스키","러시아"],
+            ["../../image/nation/9.png", "쌈바축구","브라질"],
+            ["../../image/nation/10.png", "아이스하키","캐나다"],
+            ["../../image/nation/11.png", "후지산","일본"],
+            ["../../image/nation/12.png", "쿵푸 팬더","중국"],
+            ["../../image/nation/13.png", "코알라","호주"]
+        ];
+
+        var allData = new Array();
+
+
+        for (let index = 0; index < data.length; index++) {
+            allData.push(data[index]);
+            
+        }
+
+        console.log (allData);
+
+        function init(){
+            wrapper = document.createElement("div");
+            wrapper.style.position = "relative";
+            wrapper.style.margin = "auto";
+            wrapper.style.width = 500 + "px"
+            wrapper.style.height = 900 + "px";
+            wrapper.style.backgroundColor ="aqua";
+            
+
+         
+
+            pic = document.createElement("div");
+            pic.style.width = 100 + "%";
+            pic.style.height = 350 + "px";
+            pic.style.backgroundColor = "black";
+            
+            
+            hint = document.createElement("div");
+            hint.style.width = 100 + "%";
+            hint.style.height = 120 + "px";
+            hint.style.backgroundColor = "green";
+            hint.style.fontSize = 50 + "px";
+            hint.style.textAlign = "center";
+            hint.style.color = "white";
+            
+
+     
+
+            answer = document.createElement("div");
+            answer.style.width = 100 + "%";
+            answer.style.height = 120 + "px";
+            answer.style.backgroundColor = "pink";
+             
+
+            txt = document.createElement("input");
+
+            txt.type = "text";
+            txt.style.width = 100 +"%";
+            txt.style.height = 100 +"%";
+            txt.style.boxSizing ="border-box"
+            txt.style.fontSize = 35 + "px";
+            txt.style.textAlign = "center";
+            txt.placeholder = "단어를 따라치세요";
+            
+           
+
+            answer.appendChild(txt);
+
+            printWordAndDrawing();
+            Ox = document.createElement("div");
+            Ox.style.width = 100 + "%";
+            Ox.style.height = 200 + "px";
+            Ox.style.backgroundColor = "red";
+            Ox.style.fontSize = 120 + "px";
+            Ox.style.textAlign = "center";
+       
+            point = document.createElement("div");
+            point.style.width = 100 + "%";
+            point.style.height = 110 + "px";
+            point.style.backgroundColor = "blue";
+            point.style.fontSize = 60 + "px";
+            point.style.textAlign = "center";
+            point.innerText = "점수  : " + score + " 점 ";
+            point.style.color = "white";
+        
+
+           
+            
+
+            txt.addEventListener("keyup",function(){
+                if(event.keyCode == 13){
+                    if(txt.value == allData[n][2]){
+                        Ox.innerText = "O";
+                        score += 10;
+                        printScore();
+                    }else{
+                        Ox.innerText = "X";
+                    }
+                    n++;
+                    txt.value = "";
+                }
+           
+
+                
+
+                if(n >= allData.length){
+                    alert("game over");
+                }else{
+                    printWordAndDrawing();
+                }
+            });
+
+            wrapper.appendChild(pic);
+            wrapper.appendChild(hint);
+            wrapper.appendChild(answer);
+            wrapper.appendChild(Ox);
+            wrapper.appendChild(point);
+            
+             
+
+
+            document.body.appendChild(wrapper);
+            txt.focus();
+        }
+
+
+        function printWordAndDrawing(){
+            pic.style.backgroundImage = "url("+allData[n][0]+")";
+            pic.style.backgroundSize = "100% 100%";
+            hint.innerText = allData[n][1];
+            
+
+        }
+
+        function printScore() {
+            point.innerText = "점수 : " +  score + "점";
+        }
+
+        window.addEventListener("load",function(){
+            init();
+        });
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src = "../js/map.js"></script>
+    <style>
+        #wrapper{
+            width: 1000px;
+            height: 600px;
+            background-image: url("");
+            background-size: 1000px 800px;
+            margin: auto;
+            position: relative;
+        }
+    </style>
+
+    <script>
+        var wrapper;
+
+
+        function createBlock(){
+
+            for (let index = 0; index < map.length; index++) {
+                for (let index1 = 0; index1 < map[index].length; index1++) {
+                    var block = document.createElement("img");
+            block.src = "";
+            block.style.width = 20 + "px";
+            block.style.height = 20 + "px";
+            block.style.left = (index1 * 20) + "px";
+            block.style.top = (index * 20) +"px";
+            block.style.position = "absolute";
+
+            if(map[index][index1] == 1){
+            wrapper.appendChild(block);
+            }
+                    
+                }
+                
+            }
+        
+
+            
+            
+        }
+
+        function init(){
+            wrapper = document.getElementById("wrapper");
+        }
+
+        window.addEventListener("load",function(){
+            init();
+            createBlock();
+        });
+    </script>
+</head>
+<body>
+        <div id = "wrapper">
+        </div>
+</body>
+</html>

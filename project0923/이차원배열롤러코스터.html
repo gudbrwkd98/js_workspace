@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0px;
+        }
+        #wrapper{
+            width: 1200px;
+            height: 700px;
+            background-color:  yellow;
+            overflow: hidden;
+        }
+        #content{
+            width: 1000px;
+            height: 100%;
+            background-image: url("");
+            background-size: 1000px 100%;
+            float: left;
+        }
+
+        #info{
+            width: 200px;
+            height: 100%;
+            background-color: gray;
+            float: left;
+        }
+    </style>
+    <script>
+        var content; //좌표 점 이미지 추가
+        var info; // 이차원배열에 쌓여진 데이터 상황을 보여줌
+        var dotArray = new Array();
+        var btn ;
+        var pic;
+        var picWidth = 50;
+        var picHeight = 50;
+        var index = 0 ;
+        var aa;
+
+        function init(){
+                content = document.getElementById("content");
+                info = document.getElementById("info");
+
+            pic = document.getElementById("pic");
+            pic.style.position = "absolute";
+            pic.style.top = 0 + "px";
+            pic.style.left = 0 + "px";
+            pic.style.width = picWidth + "px";
+            pic.style.height = picHeight + "px";
+
+
+
+            var btn = document.createElement("button");
+            btn.innerText = "이동시키기";
+
+
+            document.body.appendChild(btn);
+
+
+            btn.addEventListener("click",function(){
+              aa = setInterval("move()", 50);
+            
+            });
+                
+        }
+
+
+
+        function move(){
+            pic.style.top = dotArray[index][1]-(picHeight/2) + "px";
+               pic.style.left = dotArray[index][0]-(picWidth/2) + "px";
+
+                
+                index++;
+                if(index == dotArray.length){
+                    alert("도착!");
+                   clearTimeout(aa);
+                }
+       
+        }
+
+
+
+
+        function setPoint(){
+                var x = event.clientX; //x 좌표
+                var y = event.clientY; // y 좌표
+
+                //시각적 효과를 주기위해 클릭시 div 생성
+
+                var dot = document.createElement("div");
+                dot.style.width = 5 + "px";
+                dot.style.height = 5 + "px";
+                dot.style.left = x + "px";
+                dot.style.top = y + "px";
+                dot.style.background = "red";
+                dot.style.position = "absolute";
+                
+                content.appendChild(dot);
+
+                //좌표하나를 담을 배열 
+                var point =  [x,y];
+                //dotArray 추가  좌표를 모두 담을 배열
+                
+                dotArray.push(point);
+                 
+                showPoint();
+        }
+
+
+        function showPoint(){
+            var str = "";
+            for (let index = 0; index <dotArray.length; index++) {
+                var point = dotArray[index];
+
+                str +=  point[0]  + " " + point[1] + "<br/>" ;
+                
+
+            }
+
+            info.innerHTML = str;
+          
+
+        }
+
+ 
+
+        window.addEventListener("load",function(){
+            init();
+        });
+
+    </script>
+</head>
+<body>
+    
+    <div id = "wrapper">
+        <div id = "content" onclick="setPoint()">
+        <img src = "C:\workspace\image\hero\hero\image1.png"    id="pic" />
+        </div>
+        <div id = "info"></div>
+       
+    </div>
+</body>
+</html>

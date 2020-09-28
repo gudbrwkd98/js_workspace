@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ 
+    <script>
+        var cellWidth = 30;
+        var cellHeight = 30;
+        var wrapper;
+        var cell;
+        var row = 30;
+        var col = 30;
+        var cellArray = new Array (row*col);
+        var k = 0;
+
+        function createaFrame(){
+            wrapper = document.createElement("div");
+            wrapper.style.margin = "auto";
+            wrapper.style.backgroundColor = "dodgerblue";
+            wrapper.style.width = (cellWidth * col) + "px";
+            wrapper.style.height = (cellHeight * row) + "px";
+            wrapper.style.backgroundImage = "url('../../image/travel/travel/1.jpg')";
+            wrapper.style.backgroundSize = parseInt(wrapper.style.width) + "px " + parseInt(wrapper.style.height) + "px"; 
+            document.body.appendChild(wrapper);
+        }
+    
+
+        function createaCell(){
+            var n = 0 ;
+        for (let x = 0; x < row; x++) {
+             
+            for (let i = 0; i < col; i++) {
+                var cell=document.createElement("div");// <div></div>와 동일
+                cell.style.width=cellWidth+"px";
+                cell.style.height=cellHeight+"px";
+                cell.style.border="1px solid red"; //보더는 크기에 영향을 준다..
+                cell.style.boxSizing="border-box";//크기 자동계산
+                cell.style.background="yellow";
+                cell.style.opacity=1;//불투명해야 사진을 가린다..
+                cell.style.float = "left";
+                cellArray[n] = cell;
+                n++;
+                
+                cell.addEventListener("click",function(){
+                    this.style.opacity = 0;
+                })
+                
+                wrapper.appendChild(cell);//액자에 셀 추가
+                
+            }
+
+        }
+        
+      
+
+  
+                    
+        }
+
+        function setOpacity(){
+          
+         
+            
+                cellArray[k].style.opacity = 0;
+
+                if(k < cellArray.length-1){
+                k++;
+                }
+
+                
+ 
+        }
+
+        function createButton(){
+            var bt = document.createElement("button");
+            bt.innerText = "해답보기";
+
+            document.body.appendChild(bt);
+
+            bt.addEventListener("click",function(){
+               // setInterval("setOpacity()",1);
+            });
+        }
+ 
+        function init(){
+            createaFrame();
+            createaCell();
+            createButton();
+        //  setInterval("setOpacity()",100);
+           
+        }
+
+        function auto(){
+
+        }
+
+        window.addEventListener("load",function(){
+            init();
+        });
+    </script>
+</head>
+<body>
+ 
+</body>
+</html>

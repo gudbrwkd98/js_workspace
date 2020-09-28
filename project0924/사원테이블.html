@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이차원배열을 이용한 사원정보</title>
+    <style>
+        #wrapper{
+            width: 1000px;
+            height:  700px;
+            background-color: yellow;
+            margin: auto;
+            overflow: hidden;
+        }
+        #register{
+            width: 200px;;
+            height: 100%;
+            background-color: gray;
+            float: left;
+            text-align:center;
+        }
+        #register input,button,select{
+            width: 90%;
+            height: 35px;
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+
+        #content{
+            width: 800px;
+            height: 100%;
+            background-color: green;
+            float: left;
+        }
+
+        select{
+           
+            background-color: dodgerblue;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+
+    <script>
+        var Empno,Ename,Job,Mgr,Hiredate,Sal,Comm,Deptno,lists;
+       
+        var emp = new Array();//사원 정보를 누적시킬 배열 
+                                            //사원정보를 담는 1차월 member배열을 담음
+        var content ; //표를 출력할 div
+        function regist(){
+            var member = new Array(8);
+            member[0]=Empno.value;
+            member[1]= Ename.value;
+            member[2]= Job.value;
+            member[3]=Mgr.value;
+            member[4]= Hiredate.value;
+            member[5]= Sal.value;
+            member[6]= Comm.value;
+            member[7]= Deptno.value; 
+
+
+
+
+            emp.push(member);
+            getList();
+        }
+
+        function createDump(){
+            emp =  [ [7369, "SMITH", "CLERK",7902,"80/12/17",800,"NULL",20],
+            [7499, "ALLEN","SALESMAN",7698,"81/02/20",1600,300,30],
+            [7521, "WARD","SALESMAN",7698,"81/02/22",1250,500,30],
+            [7566, "JONES","MANAGER",7839,"81/04/02",2975,"NULL",20],
+            [7654, "MARTIN","SALESMAN",7698,"81/09/28",1250,1400,30],
+            [7698, "BLAKE","MANAGER",7839,"81/05/01",2850,"NULL",30],
+            [7782, "CLARK" ,"MANAGER",7839,"81/06/09",2450,"NULL",10],
+            [7788, "SCOTT","ANALYST",7566,"87/04/19",3000,"NULL",20],
+            [7839, "KING","PRESIDENT","NULL","81/11/17",5000,"NULL",10],
+            [7844, "TURNER","SALESMAN",7698,"81/09/08",1500,0,30],
+            [7876, "ADAMS","CLERK",7788,"87/05/23",1100,"NULL",20],
+            [7900, "JAMES","CLERK",7698,"81/12/03",950,"NULL",30],
+            [7902, "FORD","ANALYST",7566,"81/12/03",3000,"NULL",20],
+            [7934, "MILLER","CLERK",7782,"82/01/23",1300,"NULL",10]  ];
+        }
+
+
+        function init(){
+            Empno = document.getElementById("Empno");
+            Ename = document.getElementById("Ename");
+            Job = document.getElementById("Job");
+            Mgr = document.getElementById("Mgr");
+            Hiredate = document.getElementById("Hiredate");
+            Sal = document.getElementById("Sal");
+            Comm = document.getElementById("Comm");
+            Deptno = document.getElementById("Deptno");
+            content = document.getElementById("content");
+            // lists = document.getElementById("lists");
+
+            // lists.addEventListener("click",function(){
+            //     alert("asd");
+            // });
+
+
+        }
+
+        function getList(){
+            var str = "";
+
+            str += "<table width = '100%' border = '1px'>";
+         
+        for (let index = 0; index < emp.length; index++) {
+            str += "<tr >";
+            for(var i = 0 ; i < emp[index].length; i++){
+                if(i == 0 || i ==1 || i ==2|| i ==4 || i ==5){
+            str += "<td id = 'lists'>";
+            str += emp[index][i];
+            str += "</td>";
+                }else{
+
+                }
+ 
+            }
+            str += "</tr>";
+        
+            
+        }
+ 
+            str += "</table>";
+
+     
+            content.innerHTML = str;
+
+        }
+        window.addEventListener("load",function(){
+            init();
+            createDump();
+        })
+    </script>
+    
+</head>
+<body>
+    
+    <div id = "wrapper">
+        <div id ="register">
+            <!-- 전송 범위 설정할수있는 태그 -->
+            <!-- onsubmit 이란 전송시 발생을 처리하는 이벤트 -->
+            <form onsubmit="event.preventDefault()"> <!--event.preventDefault() -> 전송을 막는 함수-->
+                <input type="text" placeholder="Empno" id = "Empno">
+                <input type="text" placeholder="Ename" id = "Ename">
+                <select id = "Job">
+                    <option value=""> 담당업무</option>
+                    <option value="CLERK"> CLERK</option>
+                    <option value="SALESMAN"> SALESMAN</option>
+                    <option value="MANAGER"> MANAGER</option>
+                    <option value="ANALYST"> ANALYST</option>
+                    <option value="PRESIDENT"> PRESIDENT</option>
+                </select>
+                <input type="text" placeholder="Mgr" id = "Mgr">
+                <input type="text" placeholder="Hiredate" id = "Hiredate">
+                <input type="text" placeholder="Sal" id = "Sal">
+                <input type="text" placeholder="Comm" id = "Comm">
+                <select id = "Deptno">
+                    <option value=""> 부서 번호</option>
+                    <option value="10"> 10번 부서 번호</option>
+                    <option value="20"> 20번 부서 번호</option>
+                    <option value="30"> 30번 부서 번호</option>
+                    <option value="40"> 40번 부서 번호</option>
+                </select>
+                </select>
+                <!-- form 안에있는 버튼은 무조건 전송을 일으킨다
+                html5 부터 이기능 추가 
+                개발자가 전송주소를 명시하지않으면 현재 페이지로   전송하므로 
+                새로고침이 일어난다 -->
+                <button onclick="regist()">사원 등록!</button>
+            </form>
+        </div>
+        <div id = "content"></div>
+    </div>
+
+</body>
+</html>

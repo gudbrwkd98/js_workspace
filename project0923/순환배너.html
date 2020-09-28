@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        var wrapper;
+        var pic = new Array();
+        var lef = 0;
+        var btn;
+        var  i = 0;
+        function init(){
+            wrapper = document.createElement("div");
+            wrapper.style.width = 400 + "px";
+            wrapper.style.height = 100 + "px";
+            wrapper.style.backgroundColor = "white"
+            wrapper.style.margin = "auto";
+            wrapper.style.position = "relative";
+            wrapper.style.overflow = "hidden";
+            document.body.style.backgroundColor = "black";
+
+
+            for (let index = 0; index < 5; index++) {
+            pic[index] = document.createElement("div");
+            // pic.src = "../../image/travel/travel/"+index+".jpg";
+            pic[index].style.width = 100 + "px";
+            pic[index].style.height = 100 + "px";
+            pic[index].style.position = "absolute";
+            pic[index].style.left = (index*100) +"px";
+            pic[index].style.border = "5px solid white";
+            pic[index].style.boxSizing = "border-box";
+            pic[index].style.backgroundImage = "url('../../image/travel/travel/"+(index+1)+".jpg')";
+          
+            wrapper.appendChild(pic[index]);
+              
+            }
+           
+            btn = document.createElement("button");
+            btn.innerText = "수동";
+            btn.addEventListener("click",function(){
+                move();
+            });
+            document.body.appendChild(btn);
+            
+        
+
+            document.body.appendChild(wrapper);
+        }
+
+
+        function move(){
+            for (let index = 0; index < pic.length; index++) {
+                pic[index].style.left = parseInt(pic[index].style.left)-10 + "px";
+                // pic[index].style.left = parseFloat(pic[index].style.left) + 0.1*((-100) - parseFloat(pic[index].style.left)) + "px";
+                if(parseInt(pic[index].style.left) <= -90){
+                    pic[index].style.left = 400 + "px";
+                }
+            }
+     
+        }
+        window.addEventListener("load",function(){
+            init();
+            setInterval("move()",50);
+        })
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
