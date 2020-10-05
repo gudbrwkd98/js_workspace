@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src = "hero.js"></script>
+    <script src = "enemy.js"></script>
+    <script src = "bullet.js"></script>
+    <script src = "../js/lib.js"></script>
+
+<script>
+
+var wrapper;
+var Hero;
+var enemy;
+var bullet;
+var bgX = 0 ;
+var count = 0 ;
+var enemywidth;
+var enemyheight;
+var enemysrc = [ "../../image/shooting/e1.png",
+    "../../image/shooting/e2.png",
+    "../../image/shooting/e3.png",
+    "../../image/shooting/e4.png",
+    "../../image/shooting/e5.png"];
+
+
+var enemyARR = new Array();
+var bulletZip = new Array();
+
+
+var savex_key;
+var savey_key;
+var movex_time;
+var movey_time;
+var x_on = 0;
+var y_on = 0;
+
+
+function createHero(){
+    Hero = new hero(5,5,20,20,wrapper);
+
+    
+}
+
+
+function createEnemy(){
+
+    for(var i = 0 ; i <enemysrc.length ; i ++){
+        var r1 = getbetweenRandom(0,45);
+        var r2 = getbetweenRandom(90,95);
+        var r3 = getbetweenRandomWithOutRound(0.01,0.05);
+    enemy = new Enemy(5,5, r1,r2,wrapper,enemysrc[i],r3);
+
+    enemyARR.push(enemy);
+    }
+}
+
+
+
+function makebullet(){
+    bullet = new bullets(wrapper,Hero.t+2.5,Hero.l+4,1);
+    bulletZip.push(bullet);
+}
+
+function moveBg(){
+    bgX-=0.1; //누적
+    wrapper.style.backgroundPosition=bgX+"rem  0rem";
+}
+
+
+
+
+function init(){
+    wrapper = document.createElement("div");
+    wrapper.style.width = 100 + "rem";
+    wrapper.style.height = 50 + "rem";
+    wrapper.style.backgroundColor = "black";
+    wrapper.style.backgroundImage = "url('../../image/shooting/bg.jpg')";
+    wrapper.style.backgroundSize = "100rem 50rem";
+    wrapper.style.margin = "auto";
+    wrapper.style.position = "relative";
+
+    document.body.appendChild(wrapper);
+
+
+    setInterval("gameCPU()",1);
+    createHero();
+    createEnemy();
+
+
+	// $(document).keydown(function(e){ // 어떤 키가 눌렸는지 저장 
+	// 	keypress[e.which.toString()] = true;
+	// });
+	// $(document).keyup(function(e){ // 눌렸던 키를 해제
+	// 	keypress[e.which.toString()] = false;
+	// });
+
+
+    // document.body.addEventListener("keydown",function(e){
+
+
+    //     switch (e.keyCode) {
+    //         case 32 :
+    //             makebullet();
+    //             break;
+    //         case 37:
+    //          Hero.moveCharacter(e.keyCode) ;
+    //            break;
+    //         case 38:
+    //         Hero.moveCharacter(e.keyCode);
+    //             break;
+                
+    //         case 39:
+    //         Hero.moveCharacter(e.keyCode);
+    //             break;
+
+    //         case 40:
+    //         Hero.moveCharacter(e.keyCode);
+    //       break;
+ 
+    //     }
+    // });
+ 
+
+document.addEventListener("keydown",function(){
+    if(event.keyCode ==37  || event.keyCode == 39){
+        savex_key = event.keyCode;
+        if(x_on != 1){
+            x_on = 1;
+            movex_time = setInterval("keyx_move()" ,1);
+        }
+    }
+    else if (event.keyCode ==38  || event.keyCode == 40){
+        savey_key = event.keyCode;
+        if(y_on != 1){
+            y_on = 1;
+            movey_time = setInterval("keyy_move()",1);
+        }
+    }
+    else if(event.keyCode == 32){
+        makebullet();
+    }
+});
+
+
+document.addEventListener("keyup",function(){
+    if(event.keyCode ==37  || event.keyCode == 39){
+            x_on = 0;
+            clearInterval(movex_time);
+ 
+    }
+    else if (event.keyCode == 38  || event.keyCode == 40){   
+            y_on = 0;
+            clearInterval(movey_time);
+    }
+});
+
+
+
+   
+}
+
+ 
+
+function keyx_move(){
+    if(savex_key == 37){
+        Hero.moveCharacter(savex_key);
+
+    }else if (savex_key == 39){
+        Hero.moveCharacter(savex_key);
+    }
+}
+
+function keyy_move(){
+    if(savey_key == 38){
+        Hero.moveCharacter(savey_key);
+
+    }else if (savey_key == 40){
+        Hero.moveCharacter(savey_key);
+    }
+}
+
+
+function gameCPU(){
+    count++;
+    console.log(count);
+    moveBg();
+    bulletControl();
+    moveEnemy();
+    EnemyAttack();
+    EnemyRemove();
+}
+
+
+function EnemyRemove(){
+    for(var a = 0 ; a < enemyARR.length ; a++){
+        if(enemyARR[a].left <= 0 ){
+                enemyARR[a].removeA();
+        }
+    }
+}
+
+
+function moveEnemy(){
+    for(var q = 0 ; q < enemyARR.length ; q++){
+        enemyARR[q].moveA();
+    }
+}
+
+
+function bulletControl(){
+    for(var a = 0 ; a <bulletZip.length; a++){
+ 
+            bulletZip[a].move();                                    
+                                                        // 총알먼저 움직이고 넘어갈시 지우기 
+                if(parseInt(bulletZip[a].left) >= 100){
+                    bulletZip[a].removeB();
+                    bulletZip.splice(a,1);
+                }
+                
+            for(var i = 0 ; i < enemyARR.length; i++){
+                if(parseInt(bulletZip[a].left) >= enemyARR[i].left &&  parseInt(bulletZip[a].top) >= enemyARR[i].top &&  parseInt(bulletZip[a].top) <= enemyARR[i].top+enemyARR[i].height){
+                    bulletZip[a].removeB();
+                    bulletZip.splice(a,1);
+                    enemyARR[i].removeA();
+                    enemyARR.splice(i,1);
+                }
+            }
+    }
+}
+
+function EnemyAttack(){
+for (let index = 0; index < enemyARR.length; index++) {
+    if(Hero.left+Hero.width >= enemyARR[index].left && Hero.left-(Hero.width/2) <= enemyARR[index].left  && Hero.top+(Hero.height/2) >= enemyARR[index].top && Hero.top - Hero.height <= enemyARR[index].top){
+        alert("Game Over");
+    }
+}
+
+
+  
+}
+// Hero.top >= enemyARR[0].top && Hero.top-Hero.height <= enemyARR[0].top
+window.addEventListener("load",function(){
+    init();
+});
+
+
+</script>
+</head>
+<body>
+    
+</body>
+</html>

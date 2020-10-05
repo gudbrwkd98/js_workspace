@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    #wrapper{
+        width:100% ;
+        height : 800px;
+        background: yellow;
+        
+    }
+
+    body{
+        margin:0;
+    }
+</style>
+<script src = "box.js"></script>
+<script src = "../js/lib.js"></script>
+<script>
+    var box1;
+    var box2;
+
+    function getPos(){
+        var x = event.clientX;
+        var y = event.clientY;
+        console.log (x + " " +y);
+        drag(x,y);
+    }
+
+    //박스 나르기 
+    function drag(x, y){
+        box1.x = x ;
+        box1.y = y ;
+        //박스1의 좌표를 마우스의 좌표와 일치시키자!
+        box1.img.style.left=box1.x+"px";
+        box1.img.style.top=box1.y+"px";
+
+            //좌표출력 
+            box1.img.innerText="x:"+box1.x+"\n y:"+box1.y;//마우스 좌표정보 
+            box2.img.innerText="x:"+box2.x+"\n y:"+box2.y;//원래 자기 자신의 정보
+       if(collisionCheck(box1.img,box2.img)){
+           alert("충돌");
+       };
+        
+       
+    }
+
+ 
+
+    function init(){
+         box1 = new box("red",300,200);
+         box2 = new box("blue",300,800);
+    }
+
+    window.addEventListener("load",function(){
+        init();
+    })
+</script>
+<body onmousemove="getPos()">
+<div id= "wrapper">
+
+</div>
+    
+    
+</body>
+</html>

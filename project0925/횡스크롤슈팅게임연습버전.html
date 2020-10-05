@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src = "hero.js"></script>
+    <script src = "enemy.js"></script>
+    <script src = "bullet.js"></script>
+    <style>
+        #wrapper{
+            width: 100%;
+            height: 640px;
+            background-image: url("../../image/shooting/game_bg.jpg");
+            margin: auto;
+        }
+    </style>
+
+    <script>
+    var wrapper;
+    var hero;
+    var count = 0 ;
+    var bgX =-2;
+    var bullet;
+    var hero;
+    var bulletzip = new Array();
+     
+
+    var enemyArray = new Array("../../image/shooting/e1.png","../../image/shooting/e2.png","../../image/shooting/e3.png","../../image/shooting/e4.png","../../image/shooting/e5.png")
+    function createHero(){
+        //container,x,y,width,height
+        hero = new Hero(wrapper,150,150,50,50);
+    }
+
+    function createEnemy(){
+        for(var  i = 0 ; i < 5 ; i++){
+        new Enemy(100,100,screen.width-150,(i+1)*100,wrapper,enemyArray[i]);
+            
+    }
+    }
+
+
+    function createBullet(){
+        bullet = new Bullet(hero.x+(hero.width/2),hero.y+(hero.height/2),wrapper,2);
+        bulletzip.push(bullet);
+    }
+
+    function init(){
+        wrapper = document.getElementById("wrapper");
+
+        setInterval("gameLoop()",1); //게임루프 가동시작!
+        createHero();
+        createEnemy();
+        
+        document.body.addEventListener("keydown",function(e){
+
+            if(e.keyCode ==37 || e.keyCode ==39 || e.keyCode == 40 || e.keyCode ==38 ){
+                hero.move(e.keyCode);
+            }
+            if(e.keyCode == 32){
+                createBullet();
+
+            }  
+        })
+        
+
+        moveBg();
+
+    }
+//배경움직임 처리
+
+    function moveBg(){
+        wrapper.style.backgroundPosition= bgX-- +"px 0px";
+    }
+
+    function gameLoop(){
+
+        moveBg();
+        moveBullet();
+        removeBullet();
+     
+  
+      
+    }
+
+    function removeBullet(){
+        
+        for(var a = 0 ; a < bulletzip.length; a++){
+            if(bulletzip[a].x >= screen.width){
+                    bulletzip[a].removeB();
+                    bulletzip.splice(a,1);
+                    }
+
+            
+        }
+    }
+
+    function moveBullet(){
+        for(var a = 0 ; a < bulletzip.length ; a++){
+            bulletzip[a].move();
+        }
+    }
+
+    window.addEventListener("load",function(){
+        init();
+    });
+    </script>
+</head>
+<body>
+    
+
+    <div id ="wrapper">
+     
+    </div>
+</body>
+</html>
