@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrapper{
+            width: 700px;
+            height: 600px;
+            background-color:yellow;
+            margin: auto;
+            position: relative;
+            overflow: scroll;
+        }
+        #register-area{
+            width: 200px;
+            height: 100%;
+            background-color : gray;
+            position: absolute;
+        }
+
+        #result-area{
+            width: 500px;
+            height: 100%;
+            background-color: red;
+            position: absolute;
+            margin-left: 200px;
+        }
+
+        input[type='text'],[type='password']{
+            margin:5px 5px;
+            border-radius: 4px;
+            padding: 6px;
+
+        }
+
+        button{
+            margin:0px 5px 0px 5px;
+            width:80px;
+            padding:6px;
+        }
+    </style>
+    <script>
+        var uid ;
+        var uname ;
+        var password;
+        var memberArray = new Array();
+
+        function regist(){
+            var member = {
+                uid:id.value, 
+                uname:n.value,
+                upassword:password.value
+            };
+
+            memberArray.push(member);
+            printData();
+        }
+
+        function init(){
+            id = document.getElementById("ID");
+            n = document.getElementById("name");
+            password = document.getElementById("Password");
+        }
+
+        function printData(){
+            var area = document.getElementById("result-area");
+            var str = "<table width='100%' border = '1px'>";
+
+            str+= "<tr>";
+            str+= "<td> 아이디 </td>";
+            str+= "<td> 비밀번호 </td>";
+            str+= "<td> 이름 </td>";
+            str+= "</tr>";
+            
+            for(var i = 0 ; i < memberArray.length ; i++){
+                var member = memberArray[i];
+                str+= "<tr>";
+                str+= "<td>" + member.uid + "</td>";
+                str+= "<td>"+ member.uname +"</td>";
+                str+= "<td>" + member.upassword +" </td>";
+                str+= "</tr>";
+            }
+
+            str+= "</table>";
+
+            area.innerHTML = str;
+        }
+
+        window.addEventListener("load",function(){
+            init();
+        });
+    </script>
+</head>
+<body>
+    
+    <div id = "wrapper">
+        <div id = "register-area">
+            <form onsubmit="event.preventDefault()">
+                <input type="text" placeholder="ID입력..."  name = "ID" id="ID"/>                
+                <input type="password" placeholder="Password입력..." name = "Password" id ="Password"/>                
+                <input type="text" placeholder="Name 입력..."  name = "name" id ="name"/>  
+                
+                <button onclick="regist()">등록</button>
+                <button onclick="remove()">지우기</button>
+            </form>
+        </div>
+        <div id = "result-area">등록될 표가 나올곳</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #matjip{
+        width: 1000px;
+        height: 800px;
+        background: blue;
+        margin:auto;
+    }
+</style>
+
+<script>
+    var MyMap;
+
+ 
+
+    var storeArray = [
+        {
+        content:"커피맛집",
+        pos:{
+            lati:37.499365,
+            longi:127.035908
+        },
+        url : "../../image/coffee.webp"
+        },
+
+        {
+        content:"빵맛집",
+        pos:{
+            lati:37.501314,
+            longi:127.035050
+        },
+        url : "../../image/bread.webp"
+        },
+
+        {
+        content:"피자맛집",
+        pos:{
+            lati:37.501961,
+            longi:127.036112
+        },
+        url : "../../image/pizza.webp"
+        },
+
+        {
+        content:"햄버거맛집",
+        pos:{
+            lati:37.497569,
+            longi:127.038140
+        },
+        url : "../../image/hamburger.webp"
+        },
+
+        {
+        content:"고기맛집",
+        pos:{
+            lati:37.494751,
+            longi:127.031209
+        },
+        url : "../../image/meat.webp"
+        }
+
+    ];
+    var MapPlaceArray = new Array();
+    var mapArray = new Array();
+    var MapPropArray = new Array();
+
+
+        //초기화
+        function init(){    
+            MyMap = document.getElementById("matjip");
+
+            findPlace();
+        }
+
+
+    function findPlace(){
+        
+        
+        var map = new google.maps.Map(MyMap,{ 
+            center : new google.maps.LatLng(storeArray[0].pos.lati,storeArray[0].pos.longi),
+            zoom :15
+            });
+
+
+    for(var a = 0 ; a < storeArray.length ; a++){
+        var store = storeArray[a];
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(storeArray[a].pos.lati,storeArray[a].pos.longi),
+            animation : google.maps.Animation.BOUNCE,
+            icon : {
+                url : storeArray[a].url,
+                scaledSize : new google.maps.Size(20,20)
+            }
+        });
+
+
+        marker.setMap(map);
+
+        var infowindow = new google.maps.InfoWindow({
+            content:storeArray[a].content
+            });
+
+            infowindow.open(map,marker);
+    
+
+    }
+
+}
+
+
+</script>
+<body>
+    
+    <div id="matjip"></div>
+
+
+</body>
+<script src="https://maps.googleapis.com/maps/api/js?key=&callback=init"></script>
+</html>
