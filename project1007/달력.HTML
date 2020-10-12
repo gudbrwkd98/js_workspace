@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .wrapper{
+        width: 700px;
+        height: 800px;
+        margin: auto;
+    }
+
+    #head{
+        width: 100%;
+        height:100px;
+        background: tan;
+        font-size: 60px;
+        text-align: center;
+    }
+
+    #content{
+        width: 100%;
+        height: 700px;
+        background: teal;
+        overflow: hidden;
+    }
+
+    a{
+        text-decoration: none;
+        color: black;
+    }
+
+ 
+</style>
+<script src = "Cell.js"></script>
+<script src  = "../js/lib.js"></script>
+<script>
+    var head,content,infor;
+    var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+    var currentDay = 0;
+    var currentYear = 0 ;
+    var currentMonth = 0;
+    var txt;
+
+function createDays(){
+    for(var a = 0 ; a<7; a++){
+        new Cell(content,100,100,days[a]);
+    }
+}
+
+    function getCurrentDate(){
+       var d = new Date();
+       currentYear = d.getFullYear();
+       currentMonth = d.getMonth();
+        printDate(currentYear,currentMonth+1);
+        d.setDate(1);
+        currentDay = d.getDay();
+    }
+
+    function getCustomDate(){
+        
+    }
+
+    function printDate(yyyy,mm){
+        info.innerText= yyyy+ "년" +mm+  "월";
+    }
+
+
+    function next(){
+        var d = new Date();
+        d.setFullYear(currentYear);
+        d.setMonth(currentMonth+1);
+        currentMonth = d.getMonth();
+        currentYear = d.getFullYear();
+        printDate(currentYear,getZeroDate(currentMonth+1));
+   
+        d.setDate(1);
+        currentDay = d.getDay();
+        
+        content.innerText = "";
+        createDays();
+        createCell();
+    }
+
+
+    function backword(){
+        var d = new Date();
+        d.setFullYear(currentYear);
+        d.setMonth(currentMonth-1);
+        currentMonth = d.getMonth();
+        currentYear = d.getFullYear();
+        printDate(currentYear,getZeroDate(currentMonth+1));
+
+        d.setDate(1);
+        currentDay = d.getDay();
+
+        content.innerText = "";
+        createDays();
+        createCell();
+        
+    }
+
+
+    function createCell(){
+
+        var count = 0 ;
+        var count2 = 0 ;
+
+
+        for(var a = 0 ; a<6;a++){
+            for (let i = 0; i < 7; i++) {
+       
+              if(currentDay <= count){
+                 // 1,3,5,7,8,10,12
+                 //2,4,9,11
+                   //0,1,2,3,4,5,6,7,8,9,10,11
+                   // 0,2,4,6,7,9,11
+                   //1,3,8,10
+
+                   if(currentMonth  < 7){
+                    if(currentMonth%2){
+                            // 31
+                            if(count2 >29){
+                                break;
+                            }else{
+                            count2++
+                             txt=count2;
+                            }
+                    }else{
+                        //30
+                        if(count2 >30){
+                                break;
+                            }else{
+                            count2++
+                            txt=count2;
+                            }
+                    }
+                   }else if (currentMonth > 7){
+                       if(currentMonth%2){
+                        if(count2 >30){
+                                break;
+                            }else{
+                            count2++
+                            txt=count2;
+                            }
+                       }else{
+                        if(count2 >29){
+                                break;
+                            }else{
+                            count2++
+                            txt=count2;
+                            }
+                       }
+                   } else{
+                       if(count2>30){
+                           break;
+                       }
+                       else{
+                           count2++;
+                           txt=count2;
+                       }
+                   }
+
+     
+              
+                    
+    
+              }else{
+                txt="";
+              }
+              new Cell(content,100,100,txt);
+              count++;
+            }
+        }
+    }
+
+    
+    function init(){
+        head = document.getElementById("head");
+        content = document.getElementById("content");
+        infor = document.getElementById("info");
+
+     
+       
+    }
+
+    window.addEventListener("load",function(){
+        init();
+        getCurrentDate();
+        createDays();
+        content.innerText = "";
+        createDays();
+        createCell();
+ 
+    })
+</script>
+<body>
+    <div class="wrapper">
+        <div id = "head">
+            <span><a href="javascript:backword()"><</a></span>
+            <span id ="info">asd</span>
+            <span><a href="javascript:next()">></a></span>
+        </div>
+        <div id = "content">
+
+        </div>
+    </div>
+</body>
+</html>

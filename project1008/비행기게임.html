@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #wrapper{
+        width: 1280px;
+        height: 640px;
+        background-image: url("../../image/shooting/bg.jpg");
+        margin: auto;
+        position: relative;
+
+    }
+</style>
+<script src = "GameObject.js"></script>
+<script src = "Hero.js"></script>
+<script src = "Enemy.js"></script>
+<script src = "Bullet.js"></script>
+
+<script>
+    var wrapper;
+    var hero;
+    var bullet;
+    var bulletArray = new Array();
+    var x = 0;
+
+    //주인공 생성
+
+    function createHero(){
+        hero = new Hero(wrapper,"../../image/shooting/plane.png",100,100,200,200,0,0);
+    }
+
+    function createEnemy(){
+       new Enemy(wrapper,"../../image/shooting/e1.png",100,100,900,200-100,0,0);
+       new Enemy(wrapper,"../../image/shooting/e2.png",100,100,900,300-100,0,0);
+       new Enemy(wrapper,"../../image/shooting/e3.png",100,100,900,400-100,0,0);
+       new Enemy(wrapper,"../../image/shooting/e4.png",100,100,900,500-100,0,0);
+       new Enemy(wrapper,"../../image/shooting/e5.png",100,100,900,600-100,0,0);
+    }
+
+    function createBullet(){
+        bullet = new Bullet(wrapper,"../../image/shooting/ball.png",20,20,hero.x+hero.width,hero.y+(hero.height/2),10,0);
+        bulletArray.push(bullet);
+    }
+
+
+    function moveBg(){
+        
+        wrapper.style.backgroundPosition = x + "px 0px";
+        x--;
+    }
+
+    function gameLoop(){
+        console.log("gameloop call...");
+        hero.tick();
+        hero.render();
+        for (let i = 0; i < bulletArray.length; i++) {
+            bulletArray[i].tick();
+            bulletArray[i].render();
+        }
+        moveBg();
+    }
+
+    function init(){
+        wrapper = document.getElementById("wrapper");
+        document.body.addEventListener("keydown",function(e){
+            switch(e.keyCode){
+                case 32:
+                createBullet();
+                break;
+                case 37 :
+                hero.move(-5,0);
+                break;
+
+                case 38 : 
+                hero.move(0,-5);
+                break;
+
+                case 39 :
+                hero.move(5,0);
+                break;
+
+                case 40 :
+                hero.move(0,5);
+                break;
+
+            }
+        });
+
+        document.body.addEventListener("keyup",function(e){
+            switch(e.keyCode){
+                case 37 :
+                hero.move(0,0);
+                break;
+
+                case 38 : 
+                hero.move(0,0);
+                break;
+
+                case 39 :
+                hero.move(0,0);
+                break;
+
+                case 40 :
+                hero.move(0,0);
+                break;
+
+            }
+        });
+
+    }
+
+    window.addEventListener("load",function(){
+        init();
+        createHero();
+        createEnemy();
+       setInterval("gameLoop()",1);
+    });
+</script>
+<body>
+
+    <div id = "wrapper"></div>
+    
+</body>
+</html>
